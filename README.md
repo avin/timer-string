@@ -2,6 +2,15 @@
 
 Convert human timer strings to second/millisecond number.
 
+## Install
+
+```sh
+# with npm
+npm install timer-string
+# or with yarn
+yarn add timer-string
+```
+
 ## Usage
 
 ```js

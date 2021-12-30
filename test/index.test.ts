@@ -10,6 +10,7 @@ describe('stringToSeconds', () => {
     expect(stringToSeconds('40s 40')).toBe(null);
     expect(stringToSeconds('40s 40m')).toBe(null);
     expect(stringToSeconds('40h 40s 40m')).toBe(null);
+    expect(stringToSeconds('40:20s')).toBe(null);
 
     expect(stringToSeconds('40')).not.toBe(null);
     expect(stringToSeconds('40 40')).not.toBe(null);
@@ -20,6 +21,9 @@ describe('stringToSeconds', () => {
     expect(stringToSeconds('40h')).not.toBe(null);
     expect(stringToSeconds('40m')).not.toBe(null);
     expect(stringToSeconds('40s')).not.toBe(null);
+    expect(stringToSeconds('40:20')).not.toBe(null);
+    expect(stringToSeconds('40.20')).not.toBe(null);
+    expect(stringToSeconds('40/20')).not.toBe(null);
   });
 
   it('var strings', () => {
@@ -38,6 +42,13 @@ describe('stringToSeconds', () => {
     expect(stringToSeconds('40h')).toBe(40 * 60 * 60);
     expect(stringToSeconds('40m')).toBe(40 * 60);
     expect(stringToSeconds('40s')).toBe(40);
+
+    expect(stringToSeconds('40:20')).toBe(40*60 + 20);
+    expect(stringToSeconds('40.20')).toBe(40*60 + 20);
+    expect(stringToSeconds('40/20')).toBe(40*60 + 20);
+    expect(stringToSeconds('2:40:20')).toBe(2*60*60 + 40*60 + 20);
+    expect(stringToSeconds('2:40 : 20')).toBe(2*60*60 + 40*60 + 20);
+    expect(stringToSeconds('2.40.20')).toBe(2*60*60 + 40*60 + 20);
   });
 });
 
